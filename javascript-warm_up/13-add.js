@@ -6,4 +6,4 @@ function add(a, b)
 }
 
  
-console.log(add(1,3));
+console.log(add(4, 85));
