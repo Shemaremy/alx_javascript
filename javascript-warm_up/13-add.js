@@ -1,5 +1,6 @@
-const add = (a, b) => a + b;
+function add (a, b)
+{
+    return (a+b)
+}
 
-// Example usage:
-const result = add(5, 7);
-console.log(result); // Output: 12
+module.exports.add = add
