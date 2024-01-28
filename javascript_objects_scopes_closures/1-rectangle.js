@@ -1,10 +1,11 @@
 class Rectangle
 {
-    constructor()
+    constructor(w, h)
     {
-        width = w
-        height = h
+        this.width = w
+        this.height = h
 
+        return this.width, this.height;
     }
 
 };
