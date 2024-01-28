@@ -1,5 +1,3 @@
-module.exports = Rectangle
-
 class Rectangle
 {
     constructor()
@@ -8,3 +6,6 @@ class Rectangle
     }
 
 };
+
+
+module.exports = Rectangle
