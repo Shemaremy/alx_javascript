@@ -1,4 +1,4 @@
-module.exports.c = c;
+module.exports.c = c
 
 function c (x, theFunction)
 {
