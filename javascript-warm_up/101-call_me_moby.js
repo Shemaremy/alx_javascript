@@ -1,12 +1,9 @@
-module.exports.c = c
-
-function c (x, theFunction)
+function callMeMoby (x, theFunction)
 {
-    
-    for ( i=0; i<x; i++ )
+    for (let i = 0; i < x; i++)
     {
-         theFunction()
+        theFunction()
     }
 }
 
- 
+module.exports.callMeMoby = callMeMoby
