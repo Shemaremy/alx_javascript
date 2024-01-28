@@ -3,11 +3,10 @@ module.exports.c = c;
 function c (x, theFunction)
 {
     
-    for ( i=0; i<=2; i++ )
+    for ( i=0; i<=x; i++ )
     {
-        console.log(x);
+         return i;
     }
 }
 
-x = "C is fun";
-c(x);
+ 
