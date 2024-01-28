@@ -6,7 +6,7 @@ const myObject = {
   // Output: { type: 'object', value: 12 }
   
 
-
+  
   myObject.incr = function () {
     this.value++;
   };
