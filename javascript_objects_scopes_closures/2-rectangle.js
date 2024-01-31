@@ -5,8 +5,7 @@ class Rectangle
     {
         if (w <= 0 || h <= 0)
         {
-            this.width = undefined
-            this.height = undefined
+            return {};
         }
 
         else
