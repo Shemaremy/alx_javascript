@@ -2,9 +2,9 @@ const Rectangle = require('./5-square')
 
 class Square extends Rectangle
 {
-    constructor(side)
+    constructor(size)
     {
-        super(side,side)
+        super(size,size)
     
     }
     
