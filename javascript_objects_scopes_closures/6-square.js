@@ -21,4 +21,4 @@ class Square extends Rectangle
 
     }
 
-}
+};
