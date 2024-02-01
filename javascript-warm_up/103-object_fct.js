@@ -2,14 +2,26 @@ const myObject = {
     type: 'object',
     value: 12
   };
+
+
   console.log(myObject);
   // Output: { type: 'object', value: 12 }
   
 
+
   
+//  myObject.incr = function ()   {  this.value++; };
+
   myObject.incr = function () {
-    this.value++;
-  };
+    x = ++this.value;
+    return x;
+};
+
+
+
+
+
+
   myObject.incr();
   console.log(myObject);
   // Output: { type: 'object', value: 13 }

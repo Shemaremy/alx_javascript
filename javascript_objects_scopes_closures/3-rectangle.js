@@ -35,7 +35,9 @@ module.exports = Rectangle
 /*
 Probably, this is the previous code from 2-rectangle.js but we only Created an instance method (class method) 
 called print() that prints the rectangle using the character X 
-print is a function like others as we may name it flacko().
-Run lines 29 and 30 to see the output
+-print is a function like others as we may name it flacko().
+  Run lines 29 and 30 to see the output
+
+- repeat()  is a function that can u print the stars, remember? Without the need of 2 loops
 
 */

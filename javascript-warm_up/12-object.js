@@ -9,3 +9,8 @@ const myObject = {
   
   myObject.value = 89;
   console.log(myObject);
+
+
+
+
+// myObject is an object which is Reference datatype same as arrays, functions, date,...
