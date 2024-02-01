@@ -10,13 +10,14 @@ const myObject = {
 
 
   
-//  myObject.incr = function ()   {  this.value++; };
+ 
 
-  myObject.incr = function () {
-    x = ++this.value;
-    return x;
-};
-
+  myObject.incr = function ()
+    {
+       x = ++this.value;
+       return x;
+    };
+// This is helping us access the object initially and add the value by 1, and everytime incr() is called it adds that initial value to get a new value
 
 
 
