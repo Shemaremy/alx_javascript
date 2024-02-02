@@ -201,6 +201,75 @@ class Rectangle
 
 
 
+// ILLUSTRATING HOW TO ACCESS VARIABLES IN A CLASS, IN A CONSTRUCTOR, AND  IN A CLASS METHOD
+
+
+class m
+{
+     i = 20;        // When declaring variables outside methods and constructors, we never use let, var and const
+    constructor()
+    {   
+        let x = 40;                     // No error but let wont allow your variables to be visible outside
+        this.y = 50;                    // this keyword helps variables to be known outside
+        console.log("Hello wrld");
+    }
+
+    Flacko()
+    {
+        m.z = 70;                       // At this time, to access a variable in a class method we use a class name dot our new variable
+        this.w = 80;                    // At this time, this wont help us as in it did in the constructor
+    }
+};
+
+// const n = new m();     //   Output : Hello wrld
+// console.log(n);        //   Output : m { i: 20, y:50 }        (40 is not known because of let)
+// console.log(n.i);      //   Output : 20
+// console.log(n.x);      //   Output : undefined
+// console.log(n.y);      //   Output : 50
+// console.log(n.Flacko);    //   Output : [Function: Flacko]       (Never use brackets in printing)
+
+// console.log(m.z);         // Output : undefined   (Accessing variable z in the method before calling it gives us undefined)
+
+// n.Flacko();               // No output, we're just calling so as to access variable in class we're calling
+// console.log(m.z);         // Output : 70
+// console.log(m.w);         // Output : undefined  (Because this keyword wont help us this time)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
