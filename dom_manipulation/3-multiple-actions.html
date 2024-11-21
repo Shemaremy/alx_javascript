@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating and Removing Elements</title>
+</head>
+<body>
+  <div id="container"></div>
+
+  <script>
+    const container = document.getElementById('container');
+    const para = document.createElement('p');
+    para.textContent = 'New paragraph';
+    container.appendChild(para);
+    const btn = document.createElement('button');
+    const btnText = document.createTextNode('show/hide');
+
+   let isparaVisible = true;
+   btn.onclick = function(){
+    if (isparaVisible){
+        para.style.display = 'none';
+    }else {
+        para.style.display = 'block';
+    }
+    isparaVisible = !isparaVisible;
+   }
+    
+    btn.appendChild(btnText);
+    container.appendChild(btn);
+  </script>
+</body>
+</html>
