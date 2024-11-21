@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping Cart</title>
+</head>
+<body>
+    <h1>Available Products</h1>
+
+    <script>
+
+        //Create an array availableItems that will contain all the available items
+        const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+        
+        //If Session storage is not enabled on your browser, display an alert 
+        
+
+        if (typeof sessionStorage === 'undefined') {
+            alert('Sorry, your browser does not support Session storage. Try again with a better one');
+        }
+        //If local storage is available it should allow the user to see the application and call the function createStore and displayCart
+        else 
+        {
+            createStore(); 
+            displayCart();
+
+        }
+
+        
+        //Create a function addItemToCart takes on argument item (string)
+        function addItemToCart (item){
+            sessionStorage.setItem(item, true);
+            
+        }
+
+        //Create a function createStore
+
+        function createStore(){
+
+            //Create a ul and append it to the DOM
+            const List = document.createElement('ul');
+            //Loop through the array of items
+            availableItems.forEach((item) => {
+                // and create a list item to add to the ul
+                const itemList = document.createElement('li');
+                //The item should display the name of the available product
+                itemList.textContent = item;
+                //On click the item should call the function addItemToCart
+                
+                itemList.onclick = function (){
+                    addItemToCart(item);
+                }
+
+                List.appendChild(itemList);
+            })
+
+            document.body.appendChild(List);
+        }
+
+        //Create a function displayCart
+
+        function displayCart(){
+            
+            //If the session storage contains any item, it should display the message You previously had X items in your cart in a p element that you can append to the body
+            if (sessionStorage.length !==0){
+                const div = document.createElement('div');
+                const para = document.createElement('p');
+                // loogin using live server put this string "IsThisFirstTime_Log_From_LiveServer" as the first item in session storage
+                //that's why I did (-1)
+                para.innerText = `You previously had ${sessionStorage.length - 1} items in your cart`
+                div.appendChild(para);
+                document.body.appendChild(div);
+            }
+        }
+
+    </script>
+    
+</body>
+</html>

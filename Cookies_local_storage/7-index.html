@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoping Cart</title>
+</head>
+<body>
+    <h2>Available products: </h2>
+    <div id="availableProducts"></div>
+    <h2>Your cart: </h2>
+    <div id="cart"></div>
+
+
+    <script>
+
+        //Create an array availableItems that will contain all the available items
+        const availableItems = ['Shampoo', 'Soap', 'Sponge', 'Water'];
+        
+        //If Session storage is not enabled on your browser, display an alert 
+        
+
+        if (typeof sessionStorage === 'undefined') {
+            alert('Sorry, your browser does not support Session storage. Try again with a better one');
+        }
+        //If local storage is available it should allow the user to see the application and call the function createStore and displayCart
+        else 
+        {
+            createStore(); 
+            displayCart();
+
+        }
+
+        //Create a function getCartFromStorage that  parse a string into a JSON object, 
+        //returning the content of the cart stored in Session storage
+
+        function getCartFromStorage(){
+            const cartData = sessionStorage.getItem('cart');
+            return cartData ? JSON.parse(cartData) : {};
+
+        }
+
+        //Create a function addItemToCart takes on argument item (string)
+        function addItemToCart (item){
+            const cart = getCartFromStorage();
+            if (cart[item]) {
+                // Increment the quantity by 1
+                cart[item] += 1; 
+            } else {
+                // Initialize the quantity to 1 if it doesn't exist
+                cart[item] = 1; 
+            }
+            //It stores the value of the cart object in a string for the key cart in the Session Storage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            // call displayCart
+            displayCart();
+            
+        }
+
+        //Create a function removeItemfromCart It accepts item(string) as argument
+
+        function removeItemfromCart(item){
+            const cart = getCartFromStorage();
+            //It remove the entire item from the cart
+            delete cart[item];
+            //Store the value of the cart object in a string for the key cart in the Session Storage
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+            //call displayCart
+            displayCart();
+
+        }
+
+        //Create a function clearCart that clear the entire Session storage
+
+        function clearCart(){
+            sessionStorage.removeItem('cart');
+            //call displayCart
+            displayCart();
+        }
+
+        //Create a function createStore
+
+        function createStore(){
+
+            //Create a ul and append it to the DOM
+            const availableProducts = document.getElementById('availableProducts');
+            const List = document.createElement('ul');
+            //Loop through the array of items
+            availableItems.forEach((item) => {
+                // and create a list item to add to the ul
+                const itemList = document.createElement('li');
+                //The item should display the name of the available product
+                itemList.textContent = item;
+                //On click the item should call the function addItemToCart
+                
+                itemList.onclick = function (){
+                    addItemToCart(item);
+                }
+
+                List.appendChild(itemList);
+            })
+
+            availableProducts.appendChild(List);
+        }
+
+        //Create a function displayCart
+
+        function displayCart(){
+            
+            //If the div tag already exist, it should remove any list child
+            const cartDiv = document.getElementById('cart');
+            cartDiv.innerHTML = '';
+            // calls updateCart
+            updateCart();
+            
+        }
+
+        //Create a function updateCart
+
+        function updateCart(){
+            //It should add a list to the div tag created previously
+            const cartDiv = document.getElementById('cart');
+            const cart = getCartFromStorage();
+            const List = document.createElement('ul');
+            //If the cart is empty, it should add an item Your cart is empty
+            if (Object.keys(cart).length === 0){
+                const empty_msg = document.createElement('li');
+                empty_msg.textContent = 'Your cart is empty';
+                List.appendChild(empty_msg);
+            }
+            //If the cart is not empty, it should add the list of items within the cart with the following format: ITEM_NAME x QUANTITY (remove)
+            else 
+            {
+                //add an item named Clear my cart
+                const clearCartList = document.createElement('li')
+                const clearCartLink = document.createElement('a');
+                clearCartLink.href = '#';
+                clearCartLink.textContent = 'Clear my cart';
+                clearCartLink.style.textDecoration = 'none';
+                //When the user clicks on it, it should call the function clearCart
+                clearCartLink.onclick = function (){
+                    clearCart();
+                }
+                clearCartList.appendChild(clearCartLink)
+                List.appendChild(clearCartList);
+                for (const item in cart){
+                    const itemList = document.createElement('li');
+                    itemList.textContent = `${item} x ${cart[item]} `;
+                    //When the user clicks on remove, it should call the function removeItemfromCart
+                    const removeLink = document.createElement('a');
+                    removeLink.href = '#';
+                    removeLink.textContent = '(remove)';
+                    removeLink.style.textDecoration = 'none';
+                    removeLink.onclick = function (){
+                        removeItemfromCart(item);
+                    }
+
+                    itemList.appendChild(removeLink);
+                    List.appendChild(itemList)
+                }
+              
+                
+            }
+            cartDiv.appendChild(List);
+        }
+
+    </script>
+    
+</body>
+</html>

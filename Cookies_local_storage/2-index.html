@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in</title>
+    
+</head>
+<body>
+    <h1>Log in to the website</h1>
+    <!--Add two text inputs, with the id firstname and email-->
+    <input type="text" id="firstname" placeholder="Firstname">
+    <input type="text" id="email"  placeholder="Email">
+    <!--Add one button with the text “Log me in” that will call the function setCookies-->
+    <button onclick="setCookies()">Log me in</button>
+    <div id="cookie"></div>
+    <!--Add one button with the text “Show the cookies” that will call the function showCookies-->
+    <button onclick="showCookies()">Show the cookies</button>
+
+
+    <script>
+        //grab the input type text for firstname and email
+        const firstname = document.getElementById('firstname');
+        const email = document.getElementById('email');
+        //Function setCookies that should set the cookie firstname, email
+        function setCookies(){
+            // 10 days in seconds
+            const tenDays = 10 * 24 * 60 * 60;
+            // variable that holds the current date
+            const currentDate = new Date();
+            // variable that holds the expiration date
+            const date = new Date(currentDate.getTime() + tenDays * 1000);
+            const expirationDate = date.toUTCString();
+            // Modify cookies to expire in 10 days
+            document.cookie = `firstname = ${firstname.value}; expires=${expirationDate}; path=/`;
+            document.cookie = `email = ${email.value}; expires=${expirationDate}; path=/`;
+           
+            
+
+            //reset the value to initial value defined in placeholder
+            firstname.value = '';
+            email.value = '';
+        }
+
+        
+        
+        function showCookies() {
+            // getting cookies in the variables 
+             let cemail = getCookie('email');
+             let cfirstname = getCookie('firstname');
+             //grap the div element to add p element inside it
+             let addPara = document.getElementById('cookie');
+             //create a DOM element p
+             let p = document.createElement('p');
+            
+             //set the inner html with Email: EMAIL - Firstname: FIRSTNAME
+             //`Email: ${cemail} - Firstname: ${cfirstname}`
+             p.innerText = 'Email: ' + cemail + '- Firstname: ' + cfirstname  ;
+             //append the paragraph at the bottom of the page
+             addPara.appendChild(p);
+            
+        }
+
+        //Add function getCookie
+        function getCookie(name) {
+            const cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].split("=");
+            if (cookie[0] === name) {
+                return cookie[1];
+             }
+        }
+        return " ";
+      }
+      
+    </script>
+</body>
+</html>
